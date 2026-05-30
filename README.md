@@ -1,44 +1,125 @@
 # ChurnAnalytics
 
-This project focuses on predicting credit card customer churn using machine learning. The objective is to identify customers who are likely to leave the bank and understand the factors that contribute to churn.
+A machine learning project for predicting credit card customer churn using behavioral and transaction data.
 
-I used the BankChurners dataset containing over 10,000 customer records and built a complete machine learning pipeline starting from data cleaning and exploratory data analysis to model training, evaluation, and explainability.
+## Overview
 
-## What I Did
+Customer churn is a major concern for banks because acquiring new customers is often more expensive than retaining existing ones. In this project, I built a machine learning pipeline to identify customers who are likely to churn and analyzed the factors that influence customer attrition.
 
-* Performed exploratory data analysis (EDA) to understand customer behavior and churn patterns.
-* Created several engineered features to capture customer engagement and transaction behavior.
-* Trained and compared multiple machine learning models including Logistic Regression, XGBoost, and LightGBM.
-* Evaluated models using ROC-AUC, PR-AUC, Precision, Recall, and F1 Score.
-* Performed threshold tuning to find a better balance between precision and recall instead of relying on the default 0.5 threshold.
-* Used SHAP (SHapley Additive Explanations) to understand both global feature importance and individual customer predictions.
-* Saved the final model and preprocessing artifacts for future deployment.
+The project covers the complete data science workflow including data cleaning, exploratory data analysis, feature engineering, model training, evaluation, threshold optimization, and model explainability using SHAP.
+
+## Dataset
+
+The project uses the **BankChurners (Credit Card Customers)** dataset available on Kaggle.
+
+**Note:** The dataset is not included in this repository.
+
+To run this project:
+
+1. Download the BankChurners dataset from Kaggle.
+2. Place the CSV file in the project directory.
+3. Update the dataset path in the notebook if required.
+4. Run the notebook from top to bottom.
+
+Dataset file used:
+
+```text
+BankChurners.csv
+```
+
+## Project Workflow
+
+### 1. Data Cleaning & Preprocessing
+
+* Removed unnecessary columns
+* Encoded categorical variables
+* Scaled numerical features where required
+* Created train-test split
+
+### 2. Exploratory Data Analysis
+
+* Customer distribution analysis
+* Churn pattern analysis
+* Correlation analysis
+* Business KPI dashboard
+
+### 3. Feature Engineering
+
+Created additional features to capture customer behavior, including:
+
+* Average transaction value
+* Customer inactivity indicators
+* Relationship density
+* Utilization-related features
+* Other behavioral metrics
+
+### 4. Model Training
+
+The following models were trained and compared:
+
+* Logistic Regression
+* XGBoost
+* LightGBM
+
+### 5. Model Evaluation
+
+Models were evaluated using:
+
+* ROC-AUC
+* PR-AUC
+* Precision
+* Recall
+* F1 Score
+* Confusion Matrix
+
+### 6. Threshold Optimization
+
+Instead of using the default threshold of 0.5, different thresholds were tested to improve the balance between precision and recall.
+
+### 7. Explainable AI (SHAP)
+
+To understand model predictions, SHAP was used for:
+
+* Global feature importance
+* Customer-level explanations
+* High-risk customer analysis
+* Low-risk customer analysis
 
 ## Results
 
-Among all the models tested, XGBoost achieved the best performance:
+### Best Model: XGBoost
 
-* ROC-AUC: 0.992
-* PR-AUC: 0.965
-* Precision: 0.943
-* Recall: 0.868
-* F1 Score: 0.904
-
-The model was able to correctly identify most churned customers while maintaining a low number of false positives.
+| Metric    | Score |
+| --------- | ----- |
+| ROC-AUC   | 0.992 |
+| PR-AUC    | 0.965 |
+| Precision | 0.943 |
+| Recall    | 0.868 |
+| F1 Score  | 0.904 |
 
 ## Key Insights
 
-Some of the strongest indicators of churn were:
+* Transaction count was the strongest predictor of churn.
+* Customers with lower transaction activity were more likely to leave.
+* Inactivity and declining engagement were strong warning signs.
+* SHAP analysis helped explain both global model behavior and individual customer predictions.
 
-* Total transaction count
-* Total transaction amount
-* Transaction behavior changes over time
-* Customer inactivity
-* Revolving balance
+## Project Outputs
 
-The SHAP analysis showed that customers with low transaction activity and reduced engagement were significantly more likely to churn.
+The repository includes:
 
-## Tools and Libraries
+* KPI Dashboard
+* Behavioral EDA Visualizations
+* Correlation Analysis
+* Model Comparison Results
+* Threshold Optimization Analysis
+* SHAP Summary Plot
+* SHAP Feature Importance Plot
+* Individual Customer Explanations
+* Confusion Matrix
+* Saved Model Files
+
+## Technologies Used
 
 * Python
 * Pandas
@@ -50,20 +131,35 @@ The SHAP analysis showed that customers with low transaction activity and reduce
 * SHAP
 * Joblib
 
-## Files Included
+## Repository Structure
 
-* Data analysis notebook
-* EDA visualizations
-* Model comparison results
-* SHAP explainability plots
-* Confusion matrix
-* Saved model files for deployment
+```text
+ChurnAnalytics/
+│
+├── ChurnAnalytics.ipynb
+├── README.md
+│
+├── outputs/
+│   ├── KPI Dashboard
+│   ├── EDA Plots
+│   ├── SHAP Visualizations
+│   └── Confusion Matrix
+│
+└── model/
+    ├── churn_model.pkl
+    ├── scaler.pkl
+    ├── encoders.pkl
+    ├── feature_columns.pkl
+    └── optimal_threshold.pkl
+```
 
-## Future Improvements
+## Future Work
 
-The next step is to deploy the model using Streamlit so that customer information can be entered through a simple web interface and churn predictions can be generated in real time.
+* Deploy the model using Streamlit
+* Add real-time churn prediction
+* Create a simple user interface for customer scoring
 
----
+## Author
 
-**Author:** Aryan Verma
+**Aryan Verma**
 B.Tech, IIT (BHU) Varanasi
